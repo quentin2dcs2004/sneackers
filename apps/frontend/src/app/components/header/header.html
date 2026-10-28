@@ -1,0 +1,28 @@
+<header class="header" [class.header--menu]="ui.menuOpen()">
+  <button class="header__burger" type="button" (click)="ui.toggleMenu()" aria-label="Menu">
+    <span></span>
+    <span></span>
+  </button>
+
+  <a routerLink="/" class="header__brand" (click)="ui.toggleMenu(false)">
+    <span class="header__brand-mark">SA</span>
+    <span class="header__brand-name">Street Atelier</span>
+  </a>
+
+  <nav class="header__nav" aria-label="Principal">
+    <a routerLink="/shop" routerLinkActive="is-active">Shop</a>
+    <a routerLink="/lookbook" routerLinkActive="is-active">Lookbook</a>
+    <a routerLink="/about" routerLinkActive="is-active">About</a>
+  </nav>
+
+  <div class="header__actions">
+    @if (auth.isLoggedIn()) {
+      <button class="header__ghost" type="button" (click)="auth.logout()">{{ auth.user()?.fullName }}</button>
+    } @else {
+      <button class="header__ghost" type="button" (click)="ui.openAuth('login')">Compte</button>
+    }
+    <button class="header__cart" type="button" (click)="cart.toggle(true)">
+      Bag <span>{{ cart.count() }}</span>
+    </button>
+  </div>
+</header>

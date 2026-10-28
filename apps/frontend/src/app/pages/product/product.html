@@ -1,0 +1,43 @@
+@if (product(); as p) {
+  <section class="product">
+    <div class="product__stage">
+      <app-shoe-viewer
+        [imageUrl]="p.imageUrl"
+        [imageUrlAlt]="p.imageUrlAlt"
+        [name]="p.name"
+        [brand]="p.brand"
+      />
+    </div>
+
+    <div class="product__panel sa-container">
+      <a class="product__back" routerLink="/shop">← Back to shop</a>
+      <div class="product__info">
+        <p class="product__brand">{{ p.brand }} · {{ p.categoryName }}</p>
+        <h1>{{ p.name }}</h1>
+        <p class="product__price">{{ p.price | currency: 'EUR' }}</p>
+        <p class="product__color">{{ p.colorway }}</p>
+        <p class="product__desc">{{ p.description }}</p>
+
+        <div class="product__sizes">
+          <p>Size</p>
+          <div>
+            @for (s of sizeOptions(); track s) {
+              <button type="button" [class.is-on]="selectedSize === s" (click)="selectedSize = s">{{ s }}</button>
+            }
+          </div>
+        </div>
+
+        <button class="sa-btn product__cta" type="button" (click)="add()">
+          {{ added() ? 'Added to bag' : 'Add to bag' }}
+        </button>
+      </div>
+
+      @if (p.imageUrlAlt) {
+        <div class="product__alt" saReveal>
+          <img [src]="p.imageUrlAlt" [alt]="p.name" />
+          <p>Second angle — move across the stage to morph views.</p>
+        </div>
+      }
+    </div>
+  </section>
+}

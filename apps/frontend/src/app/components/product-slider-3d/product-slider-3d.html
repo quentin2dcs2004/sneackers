@@ -1,0 +1,21 @@
+<section class="slider" (pointermove)="onPointerMove($event)">
+  <div class="slider__stage" #canvasHost (click)="openActive()"></div>
+
+  <div class="slider__ui">
+    <div class="slider__copy">
+      @if (active; as p) {
+        <p class="slider__brand">{{ p.brand }}</p>
+        <h2>{{ p.name }}</h2>
+        <p class="slider__color">{{ p.colorway }}</p>
+        <p class="slider__price">{{ p.price | currency: 'EUR' }}</p>
+        <a class="sa-btn sa-btn--ghost" [routerLink]="['/shop', p.slug]">View drop</a>
+      }
+    </div>
+
+    <div class="slider__controls">
+      <button type="button" (click)="prev()" aria-label="Précédent">←</button>
+      <span>{{ activeIndex + 1 }} / {{ products.length || 0 }}</span>
+      <button type="button" (click)="next()" aria-label="Suivant">→</button>
+    </div>
+  </div>
+</section>

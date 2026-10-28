@@ -1,0 +1,18 @@
+<section class="look sa-container">
+  <header saReveal>
+    <p>Editorial</p>
+    <h1>Lookbook</h1>
+  </header>
+
+  <div class="look__rail">
+    @for (p of items(); track p.id; let i = $index) {
+      <a class="look__panel" [routerLink]="['/shop', p.slug]" saReveal [style.--i]="i">
+        <img [src]="p.imageUrl" [alt]="p.name" />
+        <div>
+          <span>{{ p.brand }}</span>
+          <strong>{{ p.name }}</strong>
+        </div>
+      </a>
+    }
+  </div>
+</section>

@@ -1,0 +1,164 @@
+.viewer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.05;
+  background:
+    radial-gradient(circle at 50% 42%, #fff 0%, #e8e8e8 42%, #cfcfcf 100%);
+  touch-action: none;
+  user-select: none;
+  perspective: 1200px;
+}
+
+.viewer--compact {
+  aspect-ratio: 4 / 5;
+}
+
+.viewer__aura {
+  position: absolute;
+  inset: 12% 18% 28%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / 80%), transparent 70%);
+  filter: blur(18px);
+  animation: sa-breathe 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.viewer__ring {
+  position: absolute;
+  inset: 8%;
+  border: 1px solid rgb(0 0 0 / 18%);
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-left-color: rgb(0 0 0 / 35%);
+  pointer-events: none;
+  animation: sa-spin-slow 18s linear infinite;
+}
+
+.viewer__ring::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px dashed rgb(0 0 0 / 14%);
+  border-radius: 50%;
+}
+
+.viewer__floor {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 12%;
+  height: 18%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgb(0 0 0 / 22%), transparent 70%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.viewer__shoe {
+  position: absolute;
+  inset: 12% 10% 18%;
+  width: auto;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 28px 40px rgb(0 0 0 / 28%));
+  pointer-events: none;
+}
+
+.viewer__shoe--b {
+  opacity: 0;
+}
+
+.viewer__lens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 160px;
+  margin: -80px 0 0 -80px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 35%),
+    0 20px 40px rgb(0 0 0 / 25%);
+  background-size: 280% 280%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 4;
+  mix-blend-mode: normal;
+}
+
+.viewer__hud {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgb(0 0 0 / 55%));
+  color: #fff;
+  pointer-events: none;
+}
+
+.viewer__hud p {
+  margin: 0;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.viewer__hud > span {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.viewer__actions {
+  display: flex;
+  gap: 0.4rem;
+  pointer-events: auto;
+}
+
+.viewer__actions button {
+  border: 1px solid rgb(255 255 255 / 55%);
+  background: rgb(0 0 0 / 35%);
+  color: #fff;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.viewer__actions button:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-1px);
+}
+
+.viewer--inspect .viewer__shoe {
+  filter: drop-shadow(0 28px 40px rgb(0 0 0 / 28%)) saturate(1.1);
+}
+
+@keyframes sa-breathe {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}

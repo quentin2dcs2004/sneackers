@@ -1,0 +1,89 @@
+.auth {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.auth__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(0 0 0 / 55%);
+  cursor: pointer;
+  animation: sa-fade-in 0.35s ease;
+}
+
+.auth__panel {
+  position: relative;
+  width: min(420px, 100%);
+  background: var(--bg);
+  padding: 1.5rem;
+  animation: sa-scale-in 0.45s var(--ease-out);
+  border: 1px solid var(--mute);
+}
+
+.auth__panel header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+
+.auth__panel h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.auth__panel header button {
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+input {
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  padding: 0.65rem 0;
+  outline: none;
+}
+
+.auth__error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
+.auth__switch {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.auth__switch button {
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}

@@ -1,0 +1,132 @@
+.card {
+  display: grid;
+  gap: 0.85rem;
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.card__media {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 38%, #fff 0%, #e4e4e4 55%, #cbcbcb 100%);
+  aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+}
+
+.card__orbit {
+  position: absolute;
+  inset: 10%;
+  border: 1px solid rgb(0 0 0 / 12%);
+  border-radius: 50%;
+  border-bottom-color: transparent;
+  animation: sa-spin-slow 14s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.card:hover .card__orbit {
+  opacity: 1;
+}
+
+.card__img {
+  position: absolute;
+  inset: 8% 6% 14%;
+  width: auto;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  transition:
+    opacity 0.55s var(--ease-out),
+    transform 0.9s var(--ease-out),
+    filter 0.5s;
+  filter: drop-shadow(0 22px 28px rgb(0 0 0 / 22%));
+  transform: translateZ(24px);
+}
+
+.card__img--b {
+  opacity: 0;
+  transform: translateZ(24px) scale(0.96) rotate(-4deg);
+}
+
+.card:hover .card__img--a {
+  transform: translateZ(40px) scale(1.08) translateY(-10px) rotate(-3deg);
+}
+
+.card:hover .card__img--b {
+  opacity: 1;
+  transform: translateZ(48px) scale(1.05) rotate(2deg);
+}
+
+.card:hover .card__img--a:not(:only-child) {
+  opacity: 0.12;
+}
+
+.card__float {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 3;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  background: rgb(244 244 244 / 85%);
+  backdrop-filter: blur(8px);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.35s var(--ease-out);
+  pointer-events: none;
+}
+
+.card:hover .card__float {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card__tag {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  padding: 0.35rem 0.55rem;
+  background: var(--bg);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.card__meta {
+  transform: translateZ(18px);
+}
+
+.card__meta p {
+  margin: 0;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.card__meta h3 {
+  margin: 0.25rem 0 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.card__meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.card__meta span {
+  opacity: 0.6;
+}

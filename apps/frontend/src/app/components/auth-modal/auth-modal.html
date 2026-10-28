@@ -1,0 +1,46 @@
+@if (ui.authOpen()) {
+  <div class="auth" role="dialog" aria-modal="true">
+    <button class="auth__backdrop" type="button" aria-label="Fermer" (click)="ui.closeAuth()"></button>
+    <div class="auth__panel">
+      <header>
+        <h2>{{ ui.authMode() === 'login' ? 'Welcome back' : 'Join the atelier' }}</h2>
+        <button type="button" (click)="ui.closeAuth()">×</button>
+      </header>
+
+      <form (ngSubmit)="submit()">
+        @if (ui.authMode() === 'register') {
+          <label>
+            Nom
+            <input name="fullName" [(ngModel)]="fullName" required autocomplete="name" />
+          </label>
+        }
+        <label>
+          Email
+          <input type="email" name="email" [(ngModel)]="email" required autocomplete="email" />
+        </label>
+        <label>
+          Mot de passe
+          <input type="password" name="password" [(ngModel)]="password" required minlength="6" autocomplete="current-password" />
+        </label>
+
+        @if (error()) {
+          <p class="auth__error">{{ error() }}</p>
+        }
+
+        <button class="sa-btn" type="submit" [disabled]="busy()">
+          {{ ui.authMode() === 'login' ? 'Login' : 'Create account' }}
+        </button>
+      </form>
+
+      <p class="auth__switch">
+        @if (ui.authMode() === 'login') {
+          Pas de compte ?
+          <button type="button" (click)="ui.openAuth('register')">Register</button>
+        } @else {
+          Déjà membre ?
+          <button type="button" (click)="ui.openAuth('login')">Login</button>
+        }
+      </p>
+    </div>
+  </div>
+}

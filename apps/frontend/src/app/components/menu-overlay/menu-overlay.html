@@ -1,0 +1,25 @@
+<div class="menu" [class.menu--open]="ui.menuOpen()" aria-hidden="{{ !ui.menuOpen() }}">
+  <div class="menu__noise"></div>
+  <div class="menu__inner">
+    <p class="menu__eyebrow">Navigation</p>
+    <nav class="menu__nav">
+      @for (link of links; track link.label; let i = $index) {
+        <a
+          class="menu__link"
+          [style.--i]="i"
+          [routerLink]="link.path"
+          [queryParams]="link.query || {}"
+          (click)="close()"
+        >
+          <span class="menu__index">{{ link.index }}</span>
+          <span class="menu__label">{{ link.label }}</span>
+          <span class="menu__arrow">→</span>
+        </a>
+      }
+    </nav>
+    <div class="menu__footer">
+      <p>Concept store · Sneakers only</p>
+      <p>Drop limited · Ships EU</p>
+    </div>
+  </div>
+</div>

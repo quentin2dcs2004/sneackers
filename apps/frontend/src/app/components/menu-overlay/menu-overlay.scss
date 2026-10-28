@@ -1,0 +1,119 @@
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: var(--bg-deep);
+  color: var(--bg);
+  pointer-events: none;
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transition:
+    clip-path 0.8s var(--ease-expo),
+    opacity 0.35s ease;
+}
+
+.menu--open {
+  pointer-events: auto;
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+.menu__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: radial-gradient(circle at 20% 20%, #fff 0.5px, transparent 0.6px);
+  background-size: 4px 4px;
+  pointer-events: none;
+}
+
+.menu__inner {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: calc(var(--header-h) + 1.5rem) 1.5rem 2rem;
+  width: min(1180px, 100%);
+  margin-inline: auto;
+}
+
+.menu__eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.menu__nav {
+  display: grid;
+  align-content: center;
+  gap: 0.35rem;
+}
+
+.menu__link {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--bg) 14%, transparent);
+  transform: translateY(24px);
+  opacity: 0;
+  transition:
+    transform 0.7s var(--ease-out),
+    opacity 0.7s var(--ease-out),
+    padding-left 0.35s var(--ease-out);
+  transition-delay: calc(0.12s + var(--i) * 0.06s);
+}
+
+.menu--open .menu__link {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu__link:hover {
+  padding-left: 0.75rem;
+}
+
+.menu__index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  opacity: 0.45;
+}
+
+.menu__label {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  font-weight: 400;
+}
+
+.menu__arrow {
+  font-size: 1.5rem;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity 0.3s,
+    transform 0.3s var(--ease-out);
+}
+
+.menu__link:hover .menu__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menu__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.menu__footer p {
+  margin: 0;
+}

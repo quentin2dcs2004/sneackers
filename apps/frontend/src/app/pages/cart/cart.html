@@ -1,0 +1,10 @@
+<section class="cart-page sa-container">
+  <h1>Bag</h1>
+  @if (!cart.items().length) {
+    <p>Ton bag est vide.</p>
+    <a class="sa-btn" routerLink="/shop">Shop now</a>
+  } @else {
+    <p>{{ cart.count() }} article(s) · {{ cart.total() | currency: 'EUR' }}</p>
+    <button class="sa-btn" type="button" (click)="cart.toggle(true)">Open bag drawer</button>
+  }
+</section>

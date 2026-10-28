@@ -1,0 +1,25 @@
+<a
+  class="card is-magnetic is-shoe"
+  saReveal
+  [saTilt]="16"
+  [ngClass]="'sa-reveal-delay-' + ((index % 4) + 1)"
+  [routerLink]="['/shop', product.slug]"
+>
+  <div class="card__media">
+    <div class="card__orbit" aria-hidden="true"></div>
+    <img class="card__img card__img--a" [src]="product.imageUrl" [alt]="product.name" loading="lazy" />
+    @if (product.imageUrlAlt) {
+      <img class="card__img card__img--b" [src]="product.imageUrlAlt" [alt]="product.name" loading="lazy" />
+    }
+    <span class="card__float">Inspect</span>
+    <span class="card__tag">{{ product.categoryName }}</span>
+  </div>
+  <div class="card__meta">
+    <p>{{ product.brand }}</p>
+    <h3>{{ product.name }}</h3>
+    <div>
+      <span>{{ product.colorway }}</span>
+      <strong>{{ product.price | currency: 'EUR' }}</strong>
+    </div>
+  </div>
+</a>

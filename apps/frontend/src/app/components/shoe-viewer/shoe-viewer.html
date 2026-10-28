@@ -1,0 +1,33 @@
+<div
+  class="viewer is-shoe"
+  [class.viewer--compact]="compact"
+  [class.viewer--inspect]="inspecting()"
+  #stage
+>
+  <div class="viewer__aura" aria-hidden="true"></div>
+  <div class="viewer__ring" #ring aria-hidden="true"></div>
+  <div class="viewer__floor" aria-hidden="true"></div>
+
+  <img class="viewer__shoe viewer__shoe--a" #shoeA [src]="imageUrl" [alt]="name" draggable="false" />
+  @if (imageUrlAlt) {
+    <img class="viewer__shoe viewer__shoe--b" #shoeB [src]="imageUrlAlt" [alt]="name" draggable="false" />
+  }
+
+  <div
+    class="viewer__lens"
+    #lens
+    [style.backgroundImage]="'url(' + imageUrl + ')'"
+    aria-hidden="true"
+  ></div>
+
+  <div class="viewer__hud">
+    <p>{{ brand }}</p>
+    <div class="viewer__actions">
+      <button type="button" (click)="autoSpin(); $event.stopPropagation()">Spin 360°</button>
+      <button type="button" (click)="toggleInspect(); $event.stopPropagation()">
+        {{ inspecting() ? 'Close lens' : 'Inspect' }}
+      </button>
+    </div>
+    <span>Drag to orbit · Move to tilt</span>
+  </div>
+</div>

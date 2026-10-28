@@ -1,0 +1,128 @@
+.product {
+  padding-bottom: 4rem;
+}
+
+.product__stage {
+  width: min(920px, calc(100% - 2rem));
+  margin: 1rem auto 0;
+}
+
+.product__panel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  margin-top: 1.75rem;
+  align-items: start;
+}
+
+.product__back {
+  grid-column: 1 / -1;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.product__brand {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.product__info h1 {
+  margin: 0.4rem 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.product__price {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.product__color {
+  margin: 0.35rem 0 1.1rem;
+  opacity: 0.65;
+}
+
+.product__desc {
+  margin: 0 0 1.5rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.product__sizes {
+  margin-bottom: 1.5rem;
+}
+
+.product__sizes > p {
+  margin: 0 0 0.6rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.product__sizes div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.product__sizes button {
+  min-width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid var(--mute-2);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s,
+    transform 0.25s;
+}
+
+.product__sizes button.is-on,
+.product__sizes button:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.product__alt {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--mute);
+}
+
+.product__alt img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--mute);
+}
+
+.product__alt p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .product__panel,
+  .product__alt {
+    grid-template-columns: 1fr;
+  }
+}

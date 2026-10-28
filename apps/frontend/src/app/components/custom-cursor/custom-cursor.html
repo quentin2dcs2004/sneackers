@@ -1,0 +1,12 @@
+<div
+  class="cursor"
+  [class.cursor--hover]="hover()"
+  [class.cursor--shoe]="shoe()"
+  [class.cursor--hidden]="!visible()"
+  [style.transform]="'translate3d(' + x() + 'px,' + y() + 'px,0)'"
+>
+  <span></span>
+  @if (label()) {
+    <em>{{ label() }}</em>
+  }
+</div>

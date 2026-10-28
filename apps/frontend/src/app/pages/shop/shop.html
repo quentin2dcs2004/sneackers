@@ -1,0 +1,56 @@
+<section class="shop sa-container">
+  <header class="shop__hero" saReveal>
+    <p>Catalog</p>
+    <h1>Shop the edit</h1>
+    <button class="shop__filter-btn" type="button" (click)="filtersOpen.set(!filtersOpen())">
+      {{ filtersOpen() ? 'Hide filters' : 'Filters' }}
+    </button>
+  </header>
+
+  <div class="shop__layout">
+    <aside class="filters" [class.filters--open]="filtersOpen()">
+      <label>
+        Search
+        <input [(ngModel)]="q" (ngModelChange)="load()" placeholder="Void, Neon, Dunk…" />
+      </label>
+      <label>
+        Category
+        <select [(ngModel)]="category" (ngModelChange)="load()">
+          <option value="">All</option>
+          @for (c of categories(); track c.id) {
+            <option [value]="c.slug">{{ c.name }}</option>
+          }
+        </select>
+      </label>
+      <label>
+        Brand
+        <select [(ngModel)]="brand" (ngModelChange)="load()">
+          <option value="">All</option>
+          @for (b of brandOptions(); track b) {
+            <option [value]="b">{{ b }}</option>
+          }
+        </select>
+      </label>
+      <div class="filters__prices">
+        <label>
+          Min €
+          <input type="number" name="minPrice" [(ngModel)]="minPrice" (change)="load()" />
+        </label>
+        <label>
+          Max €
+          <input type="number" name="maxPrice" [(ngModel)]="maxPrice" (change)="load()" />
+        </label>
+      </div>
+      <button class="sa-btn sa-btn--ghost" type="button" (click)="reset()">Reset</button>
+    </aside>
+
+    <div>
+      <p class="shop__count">{{ products().length }} products</p>
+      <div class="shop__grid">
+        @for (p of products(); track p.id; let i = $index) {
+          <app-product-card [product]="p" [index]="i" />
+        }
+      </div>
+    </div>
+  </div>
+</section>

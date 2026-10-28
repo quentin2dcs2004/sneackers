@@ -1,0 +1,120 @@
+.runway {
+  padding: 2rem 0 1rem;
+  perspective: 1400px;
+}
+
+.runway__head {
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+}
+
+.runway__head p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.runway__head h2 {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 400;
+}
+
+.runway__nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.runway__nav button {
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.runway__nav button:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.runway__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 38vw);
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding: 1.5rem max(1.5rem, calc((100% - 1180px) / 2 + 1.5rem));
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  transform-style: preserve-3d;
+}
+
+.runway__track::-webkit-scrollbar {
+  display: none;
+}
+
+.runway__panel {
+  position: relative;
+  scroll-snap-align: center;
+  transform-style: preserve-3d;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.runway__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, #fff, #dcdcdc 70%);
+  transform-style: preserve-3d;
+}
+
+.runway__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+  filter: drop-shadow(0 18px 24px rgb(0 0 0 / 20%));
+}
+
+.runway__panel:hover .runway__media img {
+  transform: scale(1.08) translateY(-6px);
+}
+
+.runway__index {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-style: italic;
+  color: rgb(0 0 0 / 35%);
+}
+
+.runway__meta p {
+  margin: 0;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.runway__meta h3 {
+  margin: 0.2rem 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.runway__meta strong {
+  font-size: 0.9rem;
+}

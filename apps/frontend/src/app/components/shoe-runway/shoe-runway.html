@@ -1,0 +1,28 @@
+<section class="runway">
+  <div class="runway__head">
+    <div>
+      <p>Runway</p>
+      <h2>Walk the drop</h2>
+    </div>
+    <div class="runway__nav">
+      <button type="button" (click)="scrollByDir(-1)" aria-label="Précédent">←</button>
+      <button type="button" (click)="scrollByDir(1)" aria-label="Suivant">→</button>
+    </div>
+  </div>
+
+  <div class="runway__track" #track>
+    @for (p of products; track p.id; let i = $index) {
+      <a class="runway__panel is-shoe" #panel [routerLink]="['/shop', p.slug]" [saTilt]="10">
+        <div class="runway__media">
+          <img [src]="p.imageUrl" [alt]="p.name" loading="lazy" />
+          <span class="runway__index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+        </div>
+        <div class="runway__meta">
+          <p>{{ p.brand }}</p>
+          <h3>{{ p.name }}</h3>
+          <strong>{{ p.price | currency: 'EUR' }}</strong>
+        </div>
+      </a>
+    }
+  </div>
+</section>
