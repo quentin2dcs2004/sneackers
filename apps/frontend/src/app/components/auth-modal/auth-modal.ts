@@ -1,12 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TPipe } from '../../pipes/t.pipe';
 import { AuthService } from '../../services/auth.service';
 import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-auth-modal',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TPipe],
   templateUrl: './auth-modal.html',
   styleUrl: './auth-modal.scss',
 })

@@ -1,64 +1,33 @@
 <section class="hero">
-  <div class="hero__bg" aria-hidden="true"></div>
-  <div class="hero__layout sa-container">
-    <div class="hero__copy">
-      <p class="hero__eyebrow" saReveal>Drop / Studio Edit 01</p>
-      <h1 saReveal class="sa-reveal-delay-1">
-        <span>Street</span>
-        <em>Atelier</em>
-      </h1>
-      <p class="hero__lead sa-reveal-delay-2" saReveal>
-        Uniquement des sneakers. Bouge la souris sur la paire — elle réagit.
-      </p>
-      <div class="hero__cta sa-reveal-delay-3" saReveal>
-        <a class="sa-btn" routerLink="/shop" saMagnetic>Enter shop</a>
-        <a class="sa-btn sa-btn--ghost" routerLink="/lookbook" saMagnetic>Lookbook</a>
-      </div>
-    </div>
-
-    <div class="hero__viewer">
-      @if (heroShoe(); as shoe) {
-        <app-shoe-viewer
-          [imageUrl]="shoe.imageUrl"
-          [imageUrlAlt]="shoe.imageUrlAlt"
-          [name]="shoe.name"
-          [brand]="shoe.brand"
-          [compact]="true"
-        />
-        <a class="hero__viewer-link" [routerLink]="['/shop', shoe.slug]">Open {{ shoe.name }} →</a>
-      }
+  <div class="hero__copy">
+    <p class="hero__eyebrow" saReveal>{{ 'home.eyebrow' | t }}</p>
+    <h1 saReveal>
+      <span>{{ 'home.title1' | t }}</span>
+      <em>{{ 'home.title2' | t }}</em>
+    </h1>
+    <p class="hero__lead" saReveal>{{ 'home.lead' | t }}</p>
+    <div class="hero__cta" saReveal>
+      <a class="sa-btn" routerLink="/shop" saMagnetic>{{ 'home.ctaShop' | t }}</a>
+      <a class="sa-btn sa-btn--ghost" routerLink="/lookbook" saMagnetic>{{ 'home.ctaLook' | t }}</a>
     </div>
   </div>
-  <div class="hero__scroll" aria-hidden="true">
-    <span></span>
-    Scroll
+
+  <div class="hero__stage">
+    <app-sneaker-stage-3d [products]="featured()" (selectProduct)="openProduct($event)" />
   </div>
 </section>
 
-<section class="runway-wrap">
+<section class="strip">
   <app-shoe-runway [products]="latest()" />
 </section>
 
 <section class="sa-container section">
   <div class="section__head" saReveal>
-    <h2>Featured orbit</h2>
-    <p>Carousel 3D — orbit, drag feel, mouse parallax.</p>
-  </div>
-  <app-product-slider-3d [products]="featured()" />
-</section>
-
-<section class="brands" aria-label="Marques">
-  <div class="brands__track">
-    @for (b of ['ATELIER', 'FLUX', 'NOIR', 'KINETIC', 'ATELIER', 'FLUX', 'NOIR', 'KINETIC']; track $index) {
-      <span>{{ b }}</span>
-    }
-  </div>
-</section>
-
-<section class="sa-container section">
-  <div class="section__head" saReveal>
-    <h2>Fresh cuts</h2>
-    <a routerLink="/shop">All products →</a>
+    <div>
+      <h2>{{ 'home.fresh' | t }}</h2>
+      <p>{{ 'home.orbitHint' | t }}</p>
+    </div>
+    <a routerLink="/shop">{{ 'home.all' | t }}</a>
   </div>
   <div class="grid">
     @for (p of latest().slice(0, 4); track p.id; let i = $index) {
@@ -69,12 +38,12 @@
 
 <section class="statement">
   <div class="sa-container" saReveal>
-    <p class="statement__kicker">Manifesto</p>
-    <h2>Regarde la chaussure.<br /><em>Elle te regarde.</em></h2>
-    <p>
-      Tilt 3D, spin 360°, loupe d’inspection, runway cinétique — une vitrine conçue comme une installation,
-      pas comme une grille e-commerce générique.
-    </p>
-    <a class="sa-btn sa-btn--light" routerLink="/about">Our story</a>
+    <p class="statement__kicker">{{ 'home.manifestoKicker' | t }}</p>
+    <h2>
+      {{ 'home.manifestoTitle' | t }}<br />
+      <em>{{ 'home.manifestoEm' | t }}</em>
+    </h2>
+    <p>{{ 'home.manifestoBody' | t }}</p>
+    <a class="sa-btn sa-btn--light" routerLink="/about">{{ 'home.story' | t }}</a>
   </div>
 </section>

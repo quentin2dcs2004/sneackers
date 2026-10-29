@@ -2,12 +2,13 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealDirective } from '../../directives/reveal.directive';
 import { Product } from '../../models/product.model';
+import { TPipe } from '../../pipes/t.pipe';
 import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-lookbook',
   standalone: true,
-  imports: [RouterLink, RevealDirective],
+  imports: [RouterLink, RevealDirective, TPipe],
   templateUrl: './lookbook.html',
   styleUrl: './lookbook.scss',
 })

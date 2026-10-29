@@ -1,0 +1,12 @@
+---
+description: Desktop canvas exclusif Street Atelier — 1280 × 800
+globs: apps/frontend/**/*.{scss,html,ts,css}
+alwaysApply: true
+---
+
+# Viewport 1280 × 800
+
+- Canvas de travail exclusif : **1280 × 800 px** (desktop).
+- Ne pas optimiser pour mobile ; pas de breakpoints “phone first”.
+- Tout layout / typo / spacing doit tenir dans ce cadre sans overflow horizontal.
+- `app-root` = cadre 1280×800 centré ; le contenu scroll verticalement dans `main`.

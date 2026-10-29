@@ -1,0 +1,119 @@
+.stage {
+  position: relative;
+  height: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, #ffffff 0%, #ececec 42%, #d4d4d4 78%, #c2c2c2 100%);
+  border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
+.stage__canvas {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+}
+
+.stage__canvas:active {
+  cursor: grabbing;
+}
+
+.stage__canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.stage__hud {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  padding: 1.15rem 1.2rem;
+  background: linear-gradient(transparent 0%, rgb(0 0 0 / 8%) 35%, rgb(0 0 0 / 42%) 100%);
+  color: #fff;
+  pointer-events: none;
+}
+
+.stage__copy p {
+  margin: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.stage__copy h2 {
+  margin: 0.25rem 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.stage__copy span {
+  display: block;
+  font-size: 0.78rem;
+  opacity: 0.78;
+}
+
+.stage__copy strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.stage__actions {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: end;
+  pointer-events: auto;
+}
+
+.stage__cta {
+  pointer-events: auto;
+  min-width: 9.5rem;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.stage__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.stage__controls button {
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 1px solid rgb(255 255 255 / 55%);
+  background: rgb(0 0 0 / 28%);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.stage__controls button:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.stage__controls em {
+  font-style: normal;
+  min-width: 3.4rem;
+  text-align: center;
+  opacity: 0.85;
+  letter-spacing: 0.06em;
+}

@@ -14,11 +14,12 @@ import { RouterLink } from '@angular/router';
 import gsap from 'gsap';
 import { Product } from '../../models/product.model';
 import { TiltDirective } from '../../directives/tilt.directive';
+import { TPipe } from '../../pipes/t.pipe';
 
 @Component({
   selector: 'app-shoe-runway',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe, TiltDirective],
+  imports: [RouterLink, CurrencyPipe, TiltDirective, TPipe],
   templateUrl: './shoe-runway.html',
   styleUrl: './shoe-runway.scss',
 })

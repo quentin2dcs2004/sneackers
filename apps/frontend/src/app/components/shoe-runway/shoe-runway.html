@@ -1,12 +1,12 @@
 <section class="runway">
   <div class="runway__head">
     <div>
-      <p>Runway</p>
-      <h2>Walk the drop</h2>
+      <p>{{ 'home.runway' | t }}</p>
+      <h2>{{ 'home.walk' | t }}</h2>
     </div>
     <div class="runway__nav">
-      <button type="button" (click)="scrollByDir(-1)" aria-label="Précédent">←</button>
-      <button type="button" (click)="scrollByDir(1)" aria-label="Suivant">→</button>
+      <button type="button" (click)="scrollByDir(-1)" [attr.aria-label]="'ui.prev' | t">←</button>
+      <button type="button" (click)="scrollByDir(1)" [attr.aria-label]="'ui.next' | t">→</button>
     </div>
   </div>
 

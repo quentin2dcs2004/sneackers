@@ -1,25 +1,25 @@
 @if (ui.authOpen()) {
   <div class="auth" role="dialog" aria-modal="true">
-    <button class="auth__backdrop" type="button" aria-label="Fermer" (click)="ui.closeAuth()"></button>
+    <button class="auth__backdrop" type="button" [attr.aria-label]="'cart.close' | t" (click)="ui.closeAuth()"></button>
     <div class="auth__panel">
       <header>
-        <h2>{{ ui.authMode() === 'login' ? 'Welcome back' : 'Join the atelier' }}</h2>
+        <h2>{{ (ui.authMode() === 'login' ? 'auth.welcome' : 'auth.join') | t }}</h2>
         <button type="button" (click)="ui.closeAuth()">×</button>
       </header>
 
       <form (ngSubmit)="submit()">
         @if (ui.authMode() === 'register') {
           <label>
-            Nom
+            {{ 'auth.name' | t }}
             <input name="fullName" [(ngModel)]="fullName" required autocomplete="name" />
           </label>
         }
         <label>
-          Email
+          {{ 'auth.email' | t }}
           <input type="email" name="email" [(ngModel)]="email" required autocomplete="email" />
         </label>
         <label>
-          Mot de passe
+          {{ 'auth.password' | t }}
           <input type="password" name="password" [(ngModel)]="password" required minlength="6" autocomplete="current-password" />
         </label>
 
@@ -28,17 +28,17 @@
         }
 
         <button class="sa-btn" type="submit" [disabled]="busy()">
-          {{ ui.authMode() === 'login' ? 'Login' : 'Create account' }}
+          {{ (ui.authMode() === 'login' ? 'auth.login' : 'auth.register') | t }}
         </button>
       </form>
 
       <p class="auth__switch">
         @if (ui.authMode() === 'login') {
-          Pas de compte ?
-          <button type="button" (click)="ui.openAuth('register')">Register</button>
+          {{ 'auth.noAccount' | t }}
+          <button type="button" (click)="ui.openAuth('register')">{{ 'auth.register' | t }}</button>
         } @else {
-          Déjà membre ?
-          <button type="button" (click)="ui.openAuth('login')">Login</button>
+          {{ 'auth.hasAccount' | t }}
+          <button type="button" (click)="ui.openAuth('login')">{{ 'auth.login' | t }}</button>
         }
       </p>
     </div>

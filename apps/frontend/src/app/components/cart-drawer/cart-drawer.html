@@ -1,14 +1,17 @@
 <div class="drawer" [class.drawer--open]="cart.open()" aria-hidden="{{ !cart.open() }}">
-  <button class="drawer__backdrop" type="button" aria-label="Fermer" (click)="close()"></button>
+  <button class="drawer__backdrop" type="button" [attr.aria-label]="'cart.close' | t" (click)="close()"></button>
   <aside class="drawer__panel">
     <header class="drawer__head">
-      <h2>Bag <span>{{ cart.count() }}</span></h2>
-      <button type="button" (click)="close()">Close</button>
+      <h2>{{ 'cart.title' | t }} <span>{{ cart.count() }}</span></h2>
+      <button type="button" (click)="close()">{{ 'cart.close' | t }}</button>
     </header>
 
     <div class="drawer__list">
       @if (!cart.items().length) {
-        <p class="drawer__empty">Ton bag est vide.<br /><a routerLink="/shop" (click)="close()">Explorer le shop</a></p>
+        <p class="drawer__empty">
+          {{ 'cart.empty' | t }}<br />
+          <a routerLink="/shop" (click)="close()">{{ 'cart.explore' | t }}</a>
+        </p>
       } @else {
         @for (item of cart.items(); track item.product.id + item.size) {
           <article class="drawer__item">
@@ -16,12 +19,14 @@
             <div>
               <p class="drawer__brand">{{ item.product.brand }}</p>
               <h3>{{ item.product.name }}</h3>
-              <p class="drawer__meta">Size {{ item.size }} · {{ item.product.price | currency: 'EUR' }}</p>
+              <p class="drawer__meta">{{ item.size }} · {{ item.product.price | currency: 'EUR' }}</p>
               <div class="drawer__qty">
                 <button type="button" (click)="cart.updateQty(item.product.id, item.size, item.quantity - 1)">−</button>
                 <span>{{ item.quantity }}</span>
                 <button type="button" (click)="cart.updateQty(item.product.id, item.size, item.quantity + 1)">+</button>
-                <button class="drawer__remove" type="button" (click)="cart.remove(item.product.id, item.size)">Remove</button>
+                <button class="drawer__remove" type="button" (click)="cart.remove(item.product.id, item.size)">
+                  {{ 'cart.remove' | t }}
+                </button>
               </div>
             </div>
           </article>
@@ -31,14 +36,17 @@
 
     <footer class="drawer__foot">
       <div class="drawer__total">
-        <span>Total</span>
+        <span>{{ 'cart.total' | t }}</span>
         <strong>{{ cart.total() | currency: 'EUR' }}</strong>
       </div>
-      @if (checkoutMsg()) {
-        <p class="drawer__msg">{{ checkoutMsg() }}</p>
+      @if (checkoutMsg() === 'OK') {
+        <p class="drawer__msg">✓</p>
+      }
+      @if (checkoutMsg() === 'ERR') {
+        <p class="drawer__msg">!</p>
       }
       <button class="sa-btn" type="button" [disabled]="busy() || !cart.items().length" (click)="checkout()">
-        {{ auth.isLoggedIn() ? 'Checkout' : 'Login to checkout' }}
+        {{ (auth.isLoggedIn() ? 'cart.checkout' : 'cart.loginCheckout') | t }}
       </button>
     </footer>
   </aside>

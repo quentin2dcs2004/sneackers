@@ -1,19 +1,15 @@
 <section class="about sa-container">
-  <p class="about__eyebrow" saReveal>About</p>
-  <h1 saReveal class="sa-reveal-delay-1">Un concept store,<br /><em>pas un rayon.</em></h1>
+  <p class="about__eyebrow" saReveal>{{ 'about.eyebrow' | t }}</p>
+  <h1 saReveal class="sa-reveal-delay-1">
+    {{ 'about.title' | t }}<br /><em>{{ 'about.em' | t }}</em>
+  </h1>
   <div class="about__grid">
-    <p saReveal>
-      Street Atelier naît d’une obsession : réduire le bruit du e-commerce jusqu’à ne garder que
-      la tension d’une silhouette bien choisie. Uniquement des sneakers — chaque drop est filtré.
-    </p>
-    <p saReveal class="sa-reveal-delay-2">
-      L’interface suit la même règle : typographie éditoriale, noir & gris, motion volontaire.
-      Inspiré des concept stores premium, jamais d’un template générique.
-    </p>
+    <p saReveal>{{ 'about.p1' | t }}</p>
+    <p saReveal class="sa-reveal-delay-2">{{ 'about.p2' | t }}</p>
   </div>
   <ul class="about__facts" saReveal>
-    <li><strong>12</strong><span>sneakers en édition studio</span></li>
-    <li><strong>4</strong><span>marques maison</span></li>
-    <li><strong>EU</strong><span>shipping express</span></li>
+    <li><strong>12</strong><span>{{ 'about.fact1' | t }}</span></li>
+    <li><strong>4</strong><span>{{ 'about.fact2' | t }}</span></li>
+    <li><strong>EU</strong><span>{{ 'about.fact3' | t }}</span></li>
   </ul>
 </section>

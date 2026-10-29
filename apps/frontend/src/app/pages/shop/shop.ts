@@ -4,12 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductCardComponent } from '../../components/product-card/product-card';
 import { RevealDirective } from '../../directives/reveal.directive';
 import { Category, Product } from '../../models/product.model';
+import { TPipe } from '../../pipes/t.pipe';
 import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [FormsModule, ProductCardComponent, RevealDirective],
+  imports: [FormsModule, ProductCardComponent, RevealDirective, TPipe],
   templateUrl: './shop.html',
   styleUrl: './shop.scss',
 })
@@ -33,8 +34,10 @@ export class ShopPage implements OnInit {
     this.api.getProducts().subscribe((all) => {
       this.brandOptions.set([...new Set(all.map((p) => p.brand))].sort());
     });
-    this.route.queryParamMap.subscribe(() => this.load());
-    this.load();
+    this.route.queryParamMap.subscribe((params) => {
+      this.q = params.get('q') ?? this.q;
+      this.load();
+    });
   }
 
   load() {

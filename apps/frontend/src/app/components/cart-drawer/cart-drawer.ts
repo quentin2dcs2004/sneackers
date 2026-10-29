@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TPipe } from '../../pipes/t.pipe';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
@@ -9,7 +10,7 @@ import { UiService } from '../../services/ui.service';
 @Component({
   selector: 'app-cart-drawer',
   standalone: true,
-  imports: [CurrencyPipe, RouterLink],
+  imports: [CurrencyPipe, RouterLink, TPipe],
   templateUrl: './cart-drawer.html',
   styleUrl: './cart-drawer.scss',
 })
@@ -32,9 +33,7 @@ export class CartDrawerComponent {
       this.ui.openAuth('login');
       return;
     }
-    if (!this.cart.items().length) {
-      return;
-    }
+    if (!this.cart.items().length) return;
     this.busy.set(true);
     this.checkoutMsg.set(null);
     const items = this.cart.items().map((i) => ({
@@ -45,11 +44,11 @@ export class CartDrawerComponent {
     this.api.createOrder(items).subscribe({
       next: () => {
         this.cart.clear();
-        this.checkoutMsg.set('Commande envoyée. Merci.');
+        this.checkoutMsg.set('OK');
         this.busy.set(false);
       },
       error: () => {
-        this.checkoutMsg.set('Échec de la commande. Réessaie.');
+        this.checkoutMsg.set('ERR');
         this.busy.set(false);
       },
     });

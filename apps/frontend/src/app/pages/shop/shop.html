@@ -1,31 +1,31 @@
 <section class="shop sa-container">
   <header class="shop__hero" saReveal>
-    <p>Catalog</p>
-    <h1>Shop the edit</h1>
+    <p>{{ 'shop.catalog' | t }}</p>
+    <h1>{{ 'shop.title' | t }}</h1>
     <button class="shop__filter-btn" type="button" (click)="filtersOpen.set(!filtersOpen())">
-      {{ filtersOpen() ? 'Hide filters' : 'Filters' }}
+      {{ (filtersOpen() ? 'shop.hideFilters' : 'shop.filters') | t }}
     </button>
   </header>
 
   <div class="shop__layout">
     <aside class="filters" [class.filters--open]="filtersOpen()">
       <label>
-        Search
-        <input [(ngModel)]="q" (ngModelChange)="load()" placeholder="Void, Neon, Dunk…" />
+        {{ 'shop.search' | t }}
+        <input [(ngModel)]="q" (ngModelChange)="load()" [placeholder]="'shop.placeholder' | t" />
       </label>
       <label>
-        Category
+        {{ 'shop.category' | t }}
         <select [(ngModel)]="category" (ngModelChange)="load()">
-          <option value="">All</option>
+          <option value="">{{ 'shop.all' | t }}</option>
           @for (c of categories(); track c.id) {
             <option [value]="c.slug">{{ c.name }}</option>
           }
         </select>
       </label>
       <label>
-        Brand
+        {{ 'shop.brand' | t }}
         <select [(ngModel)]="brand" (ngModelChange)="load()">
-          <option value="">All</option>
+          <option value="">{{ 'shop.all' | t }}</option>
           @for (b of brandOptions(); track b) {
             <option [value]="b">{{ b }}</option>
           }
@@ -33,19 +33,19 @@
       </label>
       <div class="filters__prices">
         <label>
-          Min €
+          {{ 'shop.min' | t }}
           <input type="number" name="minPrice" [(ngModel)]="minPrice" (change)="load()" />
         </label>
         <label>
-          Max €
+          {{ 'shop.max' | t }}
           <input type="number" name="maxPrice" [(ngModel)]="maxPrice" (change)="load()" />
         </label>
       </div>
-      <button class="sa-btn sa-btn--ghost" type="button" (click)="reset()">Reset</button>
+      <button class="sa-btn sa-btn--ghost" type="button" (click)="reset()">{{ 'shop.reset' | t }}</button>
     </aside>
 
     <div>
-      <p class="shop__count">{{ products().length }} products</p>
+      <p class="shop__count">{{ products().length }} {{ 'shop.count' | t }}</p>
       <div class="shop__grid">
         @for (p of products(); track p.id; let i = $index) {
           <app-product-card [product]="p" [index]="i" />

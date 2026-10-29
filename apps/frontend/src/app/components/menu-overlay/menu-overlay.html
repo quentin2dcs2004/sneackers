@@ -1,9 +1,9 @@
 <div class="menu" [class.menu--open]="ui.menuOpen()" aria-hidden="{{ !ui.menuOpen() }}">
   <div class="menu__noise"></div>
   <div class="menu__inner">
-    <p class="menu__eyebrow">Navigation</p>
+    <p class="menu__eyebrow">{{ 'menu.nav' | t }}</p>
     <nav class="menu__nav">
-      @for (link of links; track link.label; let i = $index) {
+      @for (link of links(); track link.label; let i = $index) {
         <a
           class="menu__link"
           [style.--i]="i"
@@ -18,8 +18,8 @@
       }
     </nav>
     <div class="menu__footer">
-      <p>Concept store · Sneakers only</p>
-      <p>Drop limited · Ships EU</p>
+      <p>{{ 'menu.tagline' | t }}</p>
+      <p>{{ 'menu.ships' | t }}</p>
     </div>
   </div>
 </div>

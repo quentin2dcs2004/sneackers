@@ -1,5 +1,5 @@
 <header class="header" [class.header--menu]="ui.menuOpen()">
-  <button class="header__burger" type="button" (click)="ui.toggleMenu()" aria-label="Menu">
+  <button class="header__burger" type="button" (click)="ui.toggleMenu()" [attr.aria-label]="'nav.menu' | t">
     <span></span>
     <span></span>
   </button>
@@ -10,19 +10,39 @@
   </a>
 
   <nav class="header__nav" aria-label="Principal">
-    <a routerLink="/shop" routerLinkActive="is-active">Shop</a>
-    <a routerLink="/lookbook" routerLinkActive="is-active">Lookbook</a>
-    <a routerLink="/about" routerLinkActive="is-active">About</a>
+    <a routerLink="/shop" routerLinkActive="is-active">{{ 'nav.shop' | t }}</a>
+    <button type="button" class="header__nav-btn" (click)="goNew()">{{ 'nav.new' | t }}</button>
+    <a routerLink="/lookbook" routerLinkActive="is-active">{{ 'nav.lookbook' | t }}</a>
+    <a routerLink="/about" routerLinkActive="is-active">{{ 'nav.about' | t }}</a>
   </nav>
 
+  <form class="header__search" (ngSubmit)="submitSearch()">
+    <input
+      type="search"
+      name="q"
+      [(ngModel)]="search"
+      [placeholder]="'nav.search' | t"
+      autocomplete="off"
+    />
+    <button type="submit" aria-label="Search">↗</button>
+  </form>
+
   <div class="header__actions">
+    <div class="header__lang" role="group" [attr.aria-label]="'Language'">
+      <button type="button" [class.is-on]="i18n.lang() === 'fr'" (click)="i18n.setLang('fr')">FR</button>
+      <button type="button" [class.is-on]="i18n.lang() === 'en'" (click)="i18n.setLang('en')">EN</button>
+    </div>
+
     @if (auth.isLoggedIn()) {
-      <button class="header__ghost" type="button" (click)="auth.logout()">{{ auth.user()?.fullName }}</button>
+      <button class="header__ghost" type="button" (click)="auth.logout()">
+        {{ auth.user()?.fullName }} · {{ 'nav.logout' | t }}
+      </button>
     } @else {
-      <button class="header__ghost" type="button" (click)="ui.openAuth('login')">Compte</button>
+      <button class="header__ghost" type="button" (click)="ui.openAuth('login')">{{ 'nav.account' | t }}</button>
     }
+
     <button class="header__cart" type="button" (click)="cart.toggle(true)">
-      Bag <span>{{ cart.count() }}</span>
+      {{ 'nav.bag' | t }} <span>{{ cart.count() }}</span>
     </button>
   </div>
 </header>

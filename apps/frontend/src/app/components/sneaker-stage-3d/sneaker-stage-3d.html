@@ -1,0 +1,24 @@
+<section class="stage is-shoe" (pointermove)="onPointer($event)">
+  <div class="stage__canvas" #host></div>
+
+  <div class="stage__hud">
+    @if (active; as p) {
+      <div class="stage__copy">
+        <p>{{ p.brand }}</p>
+        <h2>{{ p.name }}</h2>
+        <span>{{ p.colorway }}</span>
+        <strong>{{ p.price | currency: 'EUR' }}</strong>
+      </div>
+    }
+    <div class="stage__actions">
+      <div class="stage__controls">
+        <button type="button" (click)="prev()" aria-label="Prev">←</button>
+        <em>{{ activeIndex + 1 }} / {{ products.length || 0 }}</em>
+        <button type="button" (click)="next()" aria-label="Next">→</button>
+      </div>
+      <button class="stage__cta sa-btn" type="button" (click)="open()" [disabled]="!active">
+        {{ 'home.openPair' | t }}
+      </button>
+    </div>
+  </div>
+</section>

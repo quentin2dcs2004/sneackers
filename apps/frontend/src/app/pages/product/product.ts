@@ -3,15 +3,15 @@ import { AfterViewInit, Component, ElementRef, OnInit, inject, signal } from '@a
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import gsap from 'gsap';
 import { ShoeViewerComponent } from '../../components/shoe-viewer/shoe-viewer';
-import { RevealDirective } from '../../directives/reveal.directive';
 import { Product } from '../../models/product.model';
+import { TPipe } from '../../pipes/t.pipe';
 import { ApiService } from '../../services/api.service';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CurrencyPipe, RouterLink, RevealDirective, ShoeViewerComponent],
+  imports: [CurrencyPipe, RouterLink, ShoeViewerComponent, TPipe],
   templateUrl: './product.html',
   styleUrl: './product.scss',
 })
